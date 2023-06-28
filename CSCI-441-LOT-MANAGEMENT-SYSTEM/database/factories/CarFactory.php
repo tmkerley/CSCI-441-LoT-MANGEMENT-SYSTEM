@@ -14,12 +14,14 @@ class CarFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+
     public function definition(): array
     {
         return [
-            'id' => fake() -> unique() -> number(),
+            'id' => fake() -> uuid(),
             'make' => fake()->sentence(1),
-            'model' => fake()->number(),
+            'model' => fake()->numberBetween(100, 10000),
             'year' => fake()->numberBetween(1900, 2023),
         ];
     }

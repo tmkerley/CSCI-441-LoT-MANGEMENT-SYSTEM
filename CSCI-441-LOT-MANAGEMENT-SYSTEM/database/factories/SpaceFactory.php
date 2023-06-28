@@ -14,12 +14,13 @@ class SpaceFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+
     public function definition(): array
     {
         return [
-            'id' => fake() -> unique() -> number(),
-            'car_id' => null,
-            'space_no' => fake() -> unique -> numberBetween(1,11)
+            'id' => fake() -> uuid(),
+            'car_id' => null
         ];
     }
 }

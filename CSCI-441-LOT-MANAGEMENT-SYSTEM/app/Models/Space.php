@@ -10,6 +10,8 @@ class Space extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function car(): HasOne {
         return $this->hasOne(Car::class);
     }
