@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('spaces', function (Blueprint $table) {
-            $table->uuid("id");                               // Primary key
+            $table->id("id");                               // Primary key
             $table->foreignIdFor(Car::class) -> nullable(); // Needs to be nullable because not all spaces will have a car
             $table->integer("space_no");                    // Space number. Keep this and PK seperate so we can potentially remap without having to switch all the cars in the DB as well.
             $table->boolean("status");                      // "on"(true) or "off" (false)

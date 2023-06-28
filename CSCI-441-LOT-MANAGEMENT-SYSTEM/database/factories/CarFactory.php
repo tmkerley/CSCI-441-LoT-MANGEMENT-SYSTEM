@@ -19,7 +19,6 @@ class CarFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => fake() -> uuid(),
             'make' => fake()->sentence(1),
             'model' => fake()->numberBetween(100, 10000),
             'year' => fake()->numberBetween(1900, 2023),

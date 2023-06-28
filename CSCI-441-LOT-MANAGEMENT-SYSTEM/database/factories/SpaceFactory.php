@@ -19,8 +19,15 @@ class SpaceFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => fake() -> uuid(),
-            'car_id' => null
         ];
+    }
+
+     public function configure()
+    {
+        return [
+            $this->afterCreating(Car::factory() -> create([
+            'space_id' => $this-> id
+            ]);
+        )
     }
 }

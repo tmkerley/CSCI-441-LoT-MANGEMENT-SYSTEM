@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Space;
 
 return new class extends Migration
 {
@@ -12,7 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cars', function (Blueprint $table) {
-            $table->uuid("id");                    //License Plate No.
+            $table->id("id");
+            $table->foreignIdFor(Space::class) -> nullable();                  //not nullable, every car should have a space
             $table->text("make");
             $table->text("model");
             $table->integer("year");
