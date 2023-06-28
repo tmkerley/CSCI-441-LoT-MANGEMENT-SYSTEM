@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->id("sale_id");
+            $table->id("id");
             $table->foreignIdFor(Car::class);
             $table->foreignIdFor(User::class);
             $table->dateTime("sale_date");

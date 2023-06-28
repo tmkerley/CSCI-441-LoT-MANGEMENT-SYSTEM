@@ -13,7 +13,5 @@ class Car extends Model
     public function space(): BelongsTo {
         return $this->belongsTo(Space::class);
     }
-
-
 }
 
