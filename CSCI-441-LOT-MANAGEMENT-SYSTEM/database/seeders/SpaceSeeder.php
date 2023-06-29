@@ -32,31 +32,20 @@ class SpaceSeeder extends Seeder
         }
 
         $i = 1;
-
-        foreach ($cars as $car) {
-            if ($i < 51) {
-                $space = \App\Models\Space::factory()->create([
-                'car_id' => $car->id,
-                'space_no' => $i + 10,                  //start at 11 in lot A (1-10 empty spaces)
-                'lot_id' => 'A', 
-                'status' => 1                    
-                ]);
-                $car->space_id = $space['id'];
-                $i++;
-            }
-
-            else 
-            {
-                $space = \App\Models\Space::factory()->create([
-                'car_id' => $car->id,
-                'space_no' => ($i - 40),                   //start at 11 in lot B (1-10 empty spaces)
-                'lot_id' => 'B',
-                'status' => 1 ]);
-
-                $car->space_id = $space['id'];
-                $i++;
-            }
-             
+        while ($i < 51) {
+            $space = \App\Models\Space::factory()->create([
+            'space_no' => $i + 10,                  //start at 11 in lot A (1-10 empty spaces)
+            'lot_id' => 'A', 
+            'status' => 1]);
+            $i++;
         }
+
+        while($i < 101) {
+            $space = \App\Models\Space::factory()->create([
+            'space_no' => ($i - 40),                   //start at 11 in lot B (1-10 empty spaces)
+            'lot_id' => 'B',
+            'status' => 1 ]);
+            $i++;
+        }                      
     }
 }

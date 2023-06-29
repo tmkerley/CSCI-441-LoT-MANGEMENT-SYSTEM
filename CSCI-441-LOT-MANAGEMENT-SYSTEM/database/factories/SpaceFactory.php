@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Car;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Space>
@@ -22,12 +23,15 @@ class SpaceFactory extends Factory
         ];
     }
 
-     public function configure()
+    public function configure()
     {
-        return [
-            $this->afterCreating(Car::factory() -> create([
-            'space_id' => $this-> id
-            ]);
-        )
+    return 
+            $this->afterCreating(function ($space) {                                     //run after creating new space in seeder
+
+                $car = Car::factory()->create(['space_id' => $space->id]);               //create new car 
+                $space -> car_id = $car -> id;                                           //assign newly created car's ID to foreign key on space object
+                $space->save(); 
+            });
     }
 }
+
