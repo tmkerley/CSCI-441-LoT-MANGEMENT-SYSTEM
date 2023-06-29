@@ -26,11 +26,18 @@ class SpaceFactory extends Factory
     public function configure()
     {
     return 
-            $this->afterCreating(function ($space) {                                     //run after creating new space in seeder
-
-                $car = Car::factory()->create(['space_id' => $space->id]);               //create new car 
-                $space -> car_id = $car -> id;                                           //assign newly created car's ID to foreign key on space object
-                $space->save(); 
+            $this->afterCreating(function ($space) {                                         //run after creating new space in seeder
+                if ($space -> status == 0)           //empty space, don't edit space
+                {
+                    $car = Car::factory()->create(['space_id' => $space->id]);               //create new car 
+                }
+                else if ($space -> status == 1)     //occupied space, edit space
+                {
+                    $car = Car::factory()->create(['space_id' => $space->id]);               //create new car 
+                    $space -> car_id = $car -> id;                                           //assign newly created car's ID to foreign key on space object
+                    $space->save();
+                }
+                
             });
     }
 }
