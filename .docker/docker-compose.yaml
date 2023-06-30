@@ -46,3 +46,8 @@ services:
       - database
     ports:
       - 8888:80
+
+    php-fpm:
+      image: php:8-fpm
+      volumes:
+        - ./src:/var/www/html
