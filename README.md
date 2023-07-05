@@ -27,6 +27,19 @@ This will build the mariadb database, the DB viewer, and the main application an
 adminer (DB viewer) : localhost:8080 or 127.0.0.1:8080
 main application : localhost:8000 or 127.0.0.1:8000
 
+After Docker successfully builds the containers, we need to add our test data. in the command propmpt type:
+
+`docker ps`
+
+This will list out the containers and their id's
+![Alt text](image.png)
+
+To do the migration, we will need to run 
+
+`docker exec -it [containerid] php artisan migrate:fresh --seed`
+
+using the CONTAINER ID from the "csci-441-lot-mangement-system-main" image in the above list
+
 I am still working on getting it set up to hot reload when changes are made as it currently only shows changes when reloading the page. In the coming days I will add more documentation about blade and our plans with integrating it into our backend.
 
 
