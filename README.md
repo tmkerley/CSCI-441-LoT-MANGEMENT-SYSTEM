@@ -54,7 +54,7 @@ to log in to the database viewer you will need to input the below information wh
 
 ![image](https://github.com/tmkerley/CSCI-441-LoT-MANGEMENT-SYSTEM/assets/45668508/4348a869-2656-40f2-9b75-4edf79274db4)
 
-I am still working on getting it set up to hot reload when changes are made as it currently only shows changes when reloading the page. In the next couple of days I will add more documentation about blade and our plans with integrating it into our backend.
+It currently doesn't hot reload but I will look into changing that.
 
 
 
