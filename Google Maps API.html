@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Set the height and width of the map container */
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Map container -->
+  <div id="map"></div>
+
+  <!-- Include the Google Maps API script -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
+  <script>
+    // Initialize and display the map
+    function initMap() {
+      // Specify the coordinates of the location
+      var location = {lat: 37.7749, lng: -122.4194}; // Example coordinates for San Francisco
+
+      // Create a map object and set the center and zoom level
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: location,
+        zoom: 12
+      });
+
+      // Create a marker to represent the location
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: 'My Location'
+      });
+    }
+  </script>
+</body>
+</html>
