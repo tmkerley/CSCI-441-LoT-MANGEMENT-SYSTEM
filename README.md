@@ -27,7 +27,11 @@ This will build the mariadb database, the DB viewer, and the main application an
 adminer (DB viewer) : localhost:8080 or 127.0.0.1:8080
 main application : localhost:8000 or 127.0.0.1:8000
 
-After Docker successfully builds the containers, we need to add our test data. in the command propmpt type:
+The containers should be shown as running in the docker desktop container
+
+![image](https://github.com/tmkerley/CSCI-441-LoT-MANGEMENT-SYSTEM/assets/45668508/9c5cdbde-3a81-44f8-9a6b-a0de18de9a9b)
+
+After Docker successfully builds the containers, we need to add our test data. in the command prompt type:
 
 `docker ps`
 
@@ -39,6 +43,16 @@ To do the migration, we will need to run
 `docker exec -it [containerid] php artisan migrate:fresh --seed`
 
 using the CONTAINER ID from the "csci-441-lot-mangement-system-main" image in the above list
+
+It will likely ask you this 
+
+![image](https://github.com/tmkerley/CSCI-441-LoT-MANGEMENT-SYSTEM/assets/45668508/2aa5dcc8-f0a4-4885-ad97-a84e75452a4c)
+
+type yes and continue
+
+to log in to the database viewer you will need to input the below information
+
+![image](https://github.com/tmkerley/CSCI-441-LoT-MANGEMENT-SYSTEM/assets/45668508/4348a869-2656-40f2-9b75-4edf79274db4)
 
 I am still working on getting it set up to hot reload when changes are made as it currently only shows changes when reloading the page. In the coming days I will add more documentation about blade and our plans with integrating it into our backend.
 
