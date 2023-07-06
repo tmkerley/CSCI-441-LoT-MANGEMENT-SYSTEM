@@ -3,7 +3,7 @@
 @section('content')
 
 @foreach ($cars as $car)
-    <h1> {{$car}}</h1>
+    <ul> {{$car}}</ul>
 @endforeach
 
 
