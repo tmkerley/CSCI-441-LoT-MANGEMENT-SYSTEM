@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text("make");
             $table->text("model");
             $table->integer("year");
-            $table->boolean("isAvailable") -> default(true);
             $table->boolean("isBeingMoved")-> default(false);
         });
     }
