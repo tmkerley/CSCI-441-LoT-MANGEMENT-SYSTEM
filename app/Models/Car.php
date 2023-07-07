@@ -11,6 +11,7 @@ class Car extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $primaryKey = 'vinNo';
     
     public function space(): BelongsTo {
         return $this->belongsTo(Space::class);

@@ -19,6 +19,7 @@ class CarFactory extends Factory
     public function definition(): array
     {
         return [
+            'vinNo' => fake()->regexify('[A-Z0-9]{17}'),
             'make' => fake()->sentence(1),
             'model' => fake()->numberBetween(100, 10000),
             'year' => fake()->numberBetween(1900, 2023),
