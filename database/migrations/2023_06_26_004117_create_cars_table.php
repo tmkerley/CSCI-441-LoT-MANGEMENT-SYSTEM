@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cars', function (Blueprint $table) {
-            $table->text("vinNo");
+            $table->string("vinNo") -> unique();
             $table->foreignIdFor(Space::class) -> nullable();                  //not nullable, every car should have a space
             $table->text("make");
             $table->text("model");
