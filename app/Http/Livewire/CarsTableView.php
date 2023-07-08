@@ -4,7 +4,9 @@ namespace App\Http\Livewire;
 
 use LaravelViews\Views\TableView;
 
-use app\Models\Car;
+use App\Models\Car;
+
+use App\Actions\MoveCarAction;
 
 class CarsTableView extends TableView
 {
@@ -12,6 +14,7 @@ class CarsTableView extends TableView
      * Sets a model class to get the initial data
      */
     protected $model = Car::class;
+    public $searchBy = ['vinNo', 'make'];
 
     /**
      * Sets the headers of the table as you want to be displayed
@@ -20,7 +23,7 @@ class CarsTableView extends TableView
      */
     public function headers(): array
     {
-        return ['VIN Number', 'Make', 'Model', 'Year', 'Space Number'];
+        return ['VIN Number', 'Make', 'Model', 'Year', 'Space Number', 'Being Moved?'];
     }
 
     /**
@@ -35,7 +38,17 @@ class CarsTableView extends TableView
             $model->make,
             $model->model,
             $model->year,
-            $model->space_id
+            $model->space_id,
+            $model->isBeingMoved
         ];
     }
+
+    protected function actionsByRow()
+    {
+        return [
+            new MoveCarAction,
+        ];
+    }
+
+    
 }
