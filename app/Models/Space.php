@@ -13,6 +13,6 @@ class Space extends Model
     public $timestamps = false;
 
     public function car(): HasOne {
-        return $this->hasOne(Car::class);
+        return $this->hasOne(Car::class, 'car_vinNo');
     }
 }
