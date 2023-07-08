@@ -15,37 +15,20 @@ class SpaceSeeder extends Seeder
         $cars = \App\Models\Car::all();
 
         
-
-        for ($i = 1; $i < 11; $i++) {                   //add 10 empty spaces to lot A
+        $i = 1;
+        while ($i < 21) {                   //add 20 empty spaces
             \App\Models\Space::factory()->create([
                 'space_no' => $i,
-                'lot_id' => 'A',
                 'status' => 0
             ]);
-        }
-        for ($i = 1; $i < 11; $i++) {                   
-            \App\Models\Space::factory()->create([      //add 10 empty spaces to lot B
-                'space_no' => $i,
-                'lot_id' => 'B',
-                'status' => 0
-            ]);
+            $i++;
         }
 
-        $i = 1;
-        while ($i < 51) {
-            $space = \App\Models\Space::factory()->create([
-            'space_no' => $i + 10,                  //start at 11 in lot A (1-10 empty spaces)
-            'lot_id' => 'A', 
+        while ($i < 61) {
+            $space = \App\Models\Space::factory()->create([   //add 40 occupied spaces
+            'space_no' => $i,                  
             'status' => 1]);
             $i++;
-        }
-
-        while($i < 101) {
-            $space = \App\Models\Space::factory()->create([
-            'space_no' => ($i - 40),                   //start at 11 in lot B (1-10 empty spaces)
-            'lot_id' => 'B',
-            'status' => 1 ]);
-            $i++;
-        }                      
+        }               
     }
 }
