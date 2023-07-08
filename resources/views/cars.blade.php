@@ -2,9 +2,8 @@
 
 @section('content')
 
-@foreach ($cars as $car)
-    <ul> {{$car}}</ul>
-@endforeach
+
+<livewire:cars-table-view />
 
 
 @endsection
