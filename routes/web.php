@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/cars', function () {
-    return view('cars', ['cars' => \App\Models\Car::all()])
+    return view('cars', ['cars' => \App\Models\Car::all()]);
     });
 
 Route::get('/map', function () {
