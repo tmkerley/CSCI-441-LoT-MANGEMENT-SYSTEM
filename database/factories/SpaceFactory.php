@@ -46,6 +46,9 @@ class SpaceFactory extends Factory
 
             }
            */
+
+           'latitude' => fake()->randomFloat(13, -90, 90),
+           'longitude' => fake()->randomFloat(13, 0, 180),
         ];
     }
 
