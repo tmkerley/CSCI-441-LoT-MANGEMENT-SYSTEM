@@ -21,7 +21,7 @@ class SpaceFactory extends Factory
     public function definition(): array
     {
         return [
-            //lat = inital GPS + space number * space adjustment
+           /* //lat = inital GPS + space number * space adjustment
             'latitude' => 36.3393926944135 + (
                 (int('space_id') % 100) % 10) * 0.0000244211719,
             //lng = initial GPS + row number * 2x drive adjustment
@@ -45,7 +45,7 @@ class SpaceFactory extends Factory
                     (int('space_id') % 100) / 10) * (2 * 0.0000004900117)
 
             }
-            *******/
+           */
         ];
     }
 
@@ -57,7 +57,7 @@ class SpaceFactory extends Factory
                 if ($space -> status == 1)     //occupied space, edit space
                 {
                     $car = Car::factory()->create(['space_id' => $space->id]);                      //create new car 
-                    $space -> car_vinNo = $car -> vinNo;                                           //assign newly created car's ID to foreign key on space object
+                    $space -> car_vinNo = $car->vinNo;                                           //assign newly created car's ID to foreign key on space object
                     $space->save();
                 }
                 
