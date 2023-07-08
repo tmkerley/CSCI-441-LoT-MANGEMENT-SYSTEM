@@ -33,14 +33,28 @@ class CarsTableView extends TableView
      */
     public function row($model): array
     {
-        return [
+        if ($model->isBeingMoved == 1) {
+            return [
             $model->vinNo,
             $model->make,
             $model->model,
             $model->year,
             $model->space_id,
-            $model->isBeingMoved
+            "Yes"
         ];
+        }
+        else
+        {
+            return [
+            $model->vinNo,
+            $model->make,
+            $model->model,
+            $model->year,
+            $model->space_id,
+            "No"
+        ];
+        }
+        
     }
 
     protected function actionsByRow()

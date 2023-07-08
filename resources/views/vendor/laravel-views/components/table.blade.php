@@ -51,7 +51,11 @@ props:
 
   <tbody>
     @foreach ($items as $item)
-      <tr class="border-b border-gray-200 text-sm" wire:key="{{ $item->getKey() }}">
+      @if ($item->isBeingMoved)
+        <tr style="color:red" class="border-b border-gray-200 text-sm" wire:key="{{ $item->getKey() }}">
+      @else
+        <tr class="border-b border-gray-200 text-sm" wire:key="{{ $item->getKey() }}">
+      @endif
         @if ($this->hasBulkActions)
           <td class="pl-3">
             <span class="flex items-center justify-center">
@@ -59,6 +63,7 @@ props:
             </span>
           </td>
         @endif
+
         {{-- Renders all the content cells --}}
         @foreach ($view->row($item) as $column)
           <td class="px-3 py-2 whitespace-no-wrap">
