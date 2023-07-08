@@ -13,13 +13,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cars', function (Blueprint $table) {
-            $table->id("id");
-            $table->foreignIdFor(Space::class) -> nullable();                  //not nullable, every car should have a space
+            $table->string("vinNo") -> unique();
+            $table->foreignIdFor(Space::class)->nullable();                  //not nullable, every car should have a space
             $table->text("make");
             $table->text("model");
             $table->integer("year");
-            $table->boolean("isAvailable") -> default(true);
-            $table->boolean("isBeingMoved")-> default(false);
+            $table->boolean("isBeingMoved")->default(false);
         });
     }
 

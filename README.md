@@ -38,9 +38,9 @@ After Docker successfully builds the containers, we need to add our test data. i
 This will list out the containers and their id's
 ![Alt text](image.png)
 
-To do the migration, we will need to run 
+To do build the tables in the SQL DB, we will need to run 
 
-`docker exec -it [containerid] php artisan migrate:fresh --seed`
+`docker exec -it [containerid] php artisan migrate`
 
 using the CONTAINER ID from the "csci-441-lot-mangement-system-main" image in the above list
 
@@ -48,7 +48,12 @@ It will likely ask you this
 
 ![image](https://github.com/tmkerley/CSCI-441-LoT-MANGEMENT-SYSTEM/assets/45668508/2aa5dcc8-f0a4-4885-ad97-a84e75452a4c)
 
-type yes and continue
+then, run
+
+
+`docker exec -it [containerid] php artisan migrate:fresh --seed`
+
+to seed the data
 
 to log in to the database viewer you will need to input the below information where the password is "root"
 
