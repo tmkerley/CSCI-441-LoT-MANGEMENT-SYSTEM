@@ -11,7 +11,7 @@
         }
     </style>
     <!-- Map container -->
-    <div id="map"></div>
+    <div id="map">test</div>
 
     <!-- Include the Google Maps API script -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCl8gRTJ0813a2ptI5ZaGSQopmRRIfhfLo&callback=initMap" async defer></script>
@@ -41,3 +41,4 @@
     </script>
     </div>
 </div>
+@endsection
