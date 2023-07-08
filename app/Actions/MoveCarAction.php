@@ -17,7 +17,7 @@ class MoveCarAction extends Action
      * This should be a valid Feather icon string
      * @var String
      */
-    public $icon = "lock";
+    public $icon = "arrow-right-circle";
 
     /**
      * Execute the action when the user clicked on the button
