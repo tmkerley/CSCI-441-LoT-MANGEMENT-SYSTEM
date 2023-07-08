@@ -11,13 +11,13 @@ class MoveCarAction extends Action
      * Any title you want to be displayed
      * @var String
      * */
-    public $title = "My action title";
+    public $title = "Move Car";
 
     /**
      * This should be a valid Feather icon string
      * @var String
      */
-    public $icon = "";
+    public $icon = "lock";
 
     /**
      * Execute the action when the user clicked on the button
@@ -27,6 +27,7 @@ class MoveCarAction extends Action
      */
     public function handle($model, View $view)
     {
-        // Your code here
+        $model->isBeingMoved = true;
+        $model->save();
     }
 }
