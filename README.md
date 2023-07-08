@@ -55,13 +55,6 @@ then, run
 
 to seed the data
 
-
-It will likely ask you this 
-
-![image](https://github.com/tmkerley/CSCI-441-LoT-MANGEMENT-SYSTEM/assets/45668508/2aa5dcc8-f0a4-4885-ad97-a84e75452a4c)
-
-type yes and continue
-
 to log in to the database viewer you will need to input the below information where the password is "root"
 
 ![image](https://github.com/tmkerley/CSCI-441-LoT-MANGEMENT-SYSTEM/assets/45668508/4348a869-2656-40f2-9b75-4edf79274db4)
