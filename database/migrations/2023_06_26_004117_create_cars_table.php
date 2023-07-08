@@ -14,11 +14,11 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->string("vinNo") -> unique();
-            $table->foreignIdFor(Space::class) -> nullable();                  //not nullable, every car should have a space
+            $table->foreignIdFor(Space::class)->nullable();                  //not nullable, every car should have a space
             $table->text("make");
             $table->text("model");
             $table->integer("year");
-            $table->boolean("isBeingMoved")-> default(false);
+            $table->boolean("isBeingMoved")->default(false);
         });
     }
 

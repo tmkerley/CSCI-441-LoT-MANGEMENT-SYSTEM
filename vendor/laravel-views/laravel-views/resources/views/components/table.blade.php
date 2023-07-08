@@ -10,7 +10,7 @@ props:
 
 <table class="min-w-full">
 
-  <thead class="border-b border-t border-gray-200 bg-gray-100 text-xs leading-4 font-semibold uppercase tracking-wider text-left">
+  <thead class="border-b border-t border-gray-200 bg-gray-100 text-xs leading-4 font-semibold tracking-wider text-left">
     <tr>
       @if ($this->hasBulkActions)
         <th class="pl-3">
@@ -51,7 +51,7 @@ props:
 
   <tbody>
     @foreach ($items as $item)
-      <tr class="border-b border-gray-200 text-sm" wire:key="{{ $item->getKey() }}">
+      <tr class="border-b border-gray-200 text-lg" wire:key="{{ $item->getKey() }}">
         @if ($this->hasBulkActions)
           <td class="pl-3">
             <span class="flex items-center justify-center">
