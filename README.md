@@ -40,7 +40,7 @@ This will list out the containers and their id's
 
 To do build the tables in the SQL DB, we will need to run 
 
-`docker exec -it [containerid] php artisan migrate:fresh --seed`
+`docker exec -it [containerid] php artisan migrate`
 
 using the CONTAINER ID from the "csci-441-lot-mangement-system-main" image in the above list
 
