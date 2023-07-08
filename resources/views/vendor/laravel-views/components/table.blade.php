@@ -63,7 +63,6 @@ props:
             </span>
           </td>
         @endif
-
         {{-- Renders all the content cells --}}
         @foreach ($view->row($item) as $column)
           <td class="px-3 py-2 whitespace-no-wrap">
@@ -79,6 +78,13 @@ props:
             </div>
           </td>
         @endif
+      </tr>
+      <tr style="color:red" class="border-b border-gray-200 text-sm" wire:key="{{ $item->getKey() }}">
+          <td class="pl-3">
+            <span class="flex items-center justify-center">
+              <x-map :car="$item"/></td>
+            </span>
+          </td> 
       </tr>
     @endforeach
   </tbody>
