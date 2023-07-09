@@ -28,14 +28,15 @@
 
 
         map = new Map(document.getElementById("map"), {
-            center: position,
-            zoom: 4,
-            mapTypeId: 'satellite'
+            center: {lat: 40.554651780371145, lng: -111.89301195749745},
+            zoom: 18,
+            mapTypeId: 'satellite' // Set the map type to satellite view
         });
         // The marker, positioned at Uluru
         const marker = new AdvancedMarkerElement({
             map: map,
             position: position,
+            title: 'test'
         });
         console.log("init")
     }
