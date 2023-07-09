@@ -8,6 +8,7 @@ props:
   - itmes
   - actionsByRow --}}
 
+
 <table class="min-w-full">
 
   <thead class="border-b border-t border-gray-200 bg-gray-100 text-xs leading-4 font-semibold tracking-wider text-left">
@@ -69,7 +70,13 @@ props:
             {!! $column !!}
           </td>
         @endforeach
-
+        
+        
+        <td>
+          <div class="px-3 py-2 flex justify-end">
+            <a href="{{ route('map', ['id' => $item->space]) }}"> Show Map </a>
+          </div>
+        </td>
         {{-- Renders all the actions row --}}
         @if (count($actionsByRow) > 0)
           <td>
@@ -77,12 +84,11 @@ props:
               <x-lv-actions :actions="$actionsByRow" :model="$item" />
             </div>
           </td>
-        @endif
+        @endif       
       </tr>
       <tr style="color:red" class="border-b border-gray-200 text-sm" wire:key="{{ $item->getKey() }}">
           <td class="pl-3">
             <span class="flex items-center justify-center">
-              <x-map :car="$item"/></td>
             </span>
           </td> 
       </tr>
