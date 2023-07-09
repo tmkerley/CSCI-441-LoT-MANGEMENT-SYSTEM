@@ -22,7 +22,7 @@ class SpaceSeeder extends Seeder
                 $initialLong = -111.892230; 
             }
             $rand = rand(0,10);
-            if ($rand > 12)  {                                   //30 percent chance to be emmpty (status = 0)
+            if ($rand > 8)  {                                   //30 percent chance to be emmpty (status = 0)
                 \App\Models\Space::factory()->create([
                 'space_no' => $i,
                 'status' => 0,
