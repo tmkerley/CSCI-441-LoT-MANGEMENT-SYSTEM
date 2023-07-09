@@ -23,10 +23,10 @@ class SpaceFactory extends Factory
         return [
             //lat = inital GPS + space number * space adjustment
             'latitude' => 36.3393926944135 + (
-                (int('space_id') % 100) % 10) * 0.0000244211719,
+                ((int)'space_no' % 100) % 10) * 0.0000244211719,
             //lng = initial GPS + row number * 2x drive adjustment
             'longitude' => -94.1849862241621 + (
-                (int('space_id') % 100) / 10) * (2 * 0.0000021076959),
+                ((int)'space_no' % 100) / 10) * (2 * 0.0000021076959),
 
             /***** inital logic to fix drive aisle vs adj row parking
 
