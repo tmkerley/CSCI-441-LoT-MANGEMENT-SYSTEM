@@ -22,9 +22,9 @@
 
     async function initMap() {
 
-        const position = {lat: {{$space->latitude}}, lng: {{$space->longitude}}};
-        const { Map } = await google.maps.importLibrary("maps");
-        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+        const position = {lat: {{$space->latitude}}, lng: {{$space->longitude}}};  //<-  Will have to enter this manually for all fake data. Will pull from space 
+        const { Map } = await google.maps.importLibrary("maps");                   //object lat/long associated with car object in the same row as the link on the cars page
+        const { Marker } = await google.maps.importLibrary("marker");
 
 
         map = new Map(document.getElementById("map"), {
@@ -32,13 +32,12 @@
             zoom: 18,
             mapTypeId: 'satellite' // Set the map type to satellite view
         });
-        // The marker, positioned at Uluru
-        const marker = new AdvancedMarkerElement({
+        // The marker, positioned at center of frame
+        const marker = new Marker({
             map: map,
-            position: position,
+            position: {lat: 40.554651780371145, lng: -111.89301195749745}, 
             title: 'test'
         });
-        console.log("init")
     }
     
     initMap();
