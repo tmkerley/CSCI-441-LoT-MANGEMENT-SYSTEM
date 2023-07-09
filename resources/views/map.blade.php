@@ -1,32 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoLVBpyaKrV9QpoOpC-5GANzwO254w_mM&callback=initMap" async defer></script>
 
-<script>
-    // Initialize and display the map
-    function initMap() {
-        // Specify the coordinates of the location
-        var location = {lat: 40.554375104615126, lng: -111.89389577685698};
-        
-        // Create a map object and set the center and zoom level
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 40.554651780371145, lng: -111.89301195749745},
-            zoom: 18,
-            mapTypeId: 'satellite' // Set the map type to satellite view
-        });
 
-        // Create a marker to represent the location
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map,
-            title: 'Car Location'
-        });
-    }
-</script>
+
 
 <div class="container">
-    <div id="map" class="row justify-content-center">
         <style>
         /* Set the height and width of the map container */
         #map {
@@ -34,8 +13,35 @@
         width: 50%;
         }
         </style>
-        <!-- Map container -->
-        <div id="map">test</div>
-    </div>
+        <div id="map"></div>
 </div>
+
+<script type="text/javascript">
+    // Initialize and display the map
+    let map;
+
+    async function initMap() {
+
+        const position = {lat: {{$space->latitude}}, lng: {{$space->longitude}}};
+        const { Map } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+
+        map = new Map(document.getElementById("map"), {
+            center: position,
+            zoom: 4,
+            mapTypeId: 'satellite'
+        });
+        // The marker, positioned at Uluru
+        const marker = new AdvancedMarkerElement({
+            map: map,
+            position: position,
+        });
+        console.log("init")
+    }
+    
+    initMap();
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoLVBpyaKrV9QpoOpC-5GANzwO254w_mM&callback=initMap" async defer></script>
 @endsection
