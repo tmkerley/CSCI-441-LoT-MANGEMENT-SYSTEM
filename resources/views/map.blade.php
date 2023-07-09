@@ -35,7 +35,7 @@
         // The marker, positioned at center of frame
         const marker = new Marker({
             map: map,
-            position: {lat: 40.554651780371145, lng: -111.89301195749745}, 
+            position: position,
             title: 'test'
         });
     }
