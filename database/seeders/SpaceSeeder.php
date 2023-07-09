@@ -16,12 +16,13 @@ class SpaceSeeder extends Seeder
         $initialLat = 40.554493;
         $initialLong = -111.892439;      //start line
 
-        while ($i < 39) {
-            if ($i > 19) {                                      //limit reached, move to next line on map
+        while ($i < 52) {
+            if ($i == 27) {  
+                $initialLat = 40.554493;                                    //limit reached, move to next line on map
                 $initialLong = -111.892230; 
             }
             $rand = rand(0,10);
-            if ($rand > 7)  {                                   //30 percent chance to be emmpty (status = 0)
+            if ($rand > 12)  {                                   //30 percent chance to be emmpty (status = 0)
                 \App\Models\Space::factory()->create([
                 'space_no' => $i,
                 'status' => 0,
@@ -42,7 +43,7 @@ class SpaceSeeder extends Seeder
                 'longitude' => $initialLong
             ]);
             }
-            $initialLat += .000020;                              //move along line
+            $initialLat += .000024;                              //move along line
             $i++;   
         }          
             
