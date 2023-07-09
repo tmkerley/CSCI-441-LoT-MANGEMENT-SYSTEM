@@ -21,11 +21,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
 Route::get('/cars', function () {
-    return view('cars', ['cars' => \App\Models\Car::all()]);
+    return view('cars', ['cars' => \App\Models\Car::all(),'spaces' => \App\Models\Space::all()]);
     });
 
-Route::get('/map', function () {
-    return view('map', ['space' => \App\Models\Space::all()]);
-
-});
+Route::get('/map/{id}/', function ($id) {
+    return view('map', ['space' => \App\Models\Space::find($id)]);
+})->name('map');
