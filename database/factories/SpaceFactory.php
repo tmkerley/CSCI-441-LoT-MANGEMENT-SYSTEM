@@ -21,34 +21,10 @@ class SpaceFactory extends Factory
     public function definition(): array
     {
         return [
-           /* //lat = inital GPS + space number * space adjustment
-            'latitude' => 36.3393926944135 + (
-                (int('space_id') % 100) % 10) * 0.0000244211719,
-            //lng = initial GPS + row number * 2x drive adjustment
-            'longitude' => -94.1849862241621 + (
-                (int('space_id') % 100) / 10) * (2 * 0.0000021076959),
+           
 
-            /***** inital logic to fix drive aisle vs adj row parking
-
-            //odd row has a drive aisle adjustment
-            if (int('space_id') % 100 / 20 == 0)
-            {
-                //lng = initial GPS + row number * 2x drive adjustment
-                'longitude' => -94.1849862241621 + (
-                (int('space_id') % 100) / 10) * (2 * 0.0000021076959)
-            }
-            
-            else 
-            {
-                //lng = initial GPS + row number * 2x drive adjustment
-                'longitude' => -94.1849862241621 + (
-                    (int('space_id') % 100) / 10) * (2 * 0.0000004900117)
-
-            }
-           */
-
-           'latitude' => fake()->randomFloat(13, -90, 90),
-           'longitude' => fake()->randomFloat(13, 0, 180),
+           //'latitude' => fake()->randomFloat(13, -90, 90),
+           //'longitude' => fake()->randomFloat(13, 0, 180),
         ];
     }
 

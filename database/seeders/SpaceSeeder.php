@@ -11,24 +11,62 @@ class SpaceSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-        $cars = \App\Models\Car::all();
-
-        
+    {    
         $i = 1;
-        while ($i < 21) {                   //add 20 empty spaces
-            \App\Models\Space::factory()->create([
-                'space_no' => $i,
-                'status' => 0
-            ]);
-            $i++;
-        }
+        $initialLat = 40.554493;
+        $initialLong = -111.892439;      //start line
 
-        while ($i < 61) {
-            $space = \App\Models\Space::factory()->create([   //add 40 occupied spaces
-            'space_no' => $i,                  
-            'status' => 1]);
-            $i++;
-        }               
+        while ($i < 39) {
+            if ($i > 19) {                                      //limit reached, move to next line on map
+                $initialLong = -111.892230; 
+            }
+            $rand = rand(0,10);
+            if ($rand > 7)  {                                   //30 percent chance to be emmpty (status = 0)
+                \App\Models\Space::factory()->create([
+                'space_no' => $i,
+                'status' => 0,
+                //lat = inital GPS + space number * space adjustment
+                'latitude' => $initialLat,
+                //lng = initial GPS + row number * 2x drive adjustment
+                'longitude' => $initialLong
+            ]);
+            }               
+            
+            else {                                               // create occupied space
+                \App\Models\Space::factory()->create([
+                'space_no' => $i,
+                'status' => 1,
+                //lat = inital GPS + space number * space adjustment
+                'latitude' => $initialLat,
+                //lng = initial GPS + row number * 2x drive adjustment
+                'longitude' => $initialLong
+            ]);
+            }
+            $initialLat += .000020;                              //move along line
+            $i++;   
+        }          
+            
+    
+        
+        
+            
+
+           /* // inital logic to fix drive aisle vs adj row parking
+
+            //odd row has a drive aisle adjustment
+            if ($space->space_id % 100 / 20 == 0)
+            {
+                //lng = initial GPS + row number * 2x drive adjustment
+                'longitude' => -94.1849862241621 + (
+                ($space->space_id % 100) / 10) * (2 * 0.0000021076959)
+            }
+            
+            else 
+            {
+                //lng = initial GPS + row number * 2x drive adjustment
+                'longitude' => -94.1849862241621 + (
+                    ($space->space_id % 100) / 10) * (2 * 0.0000004900117)
+
+            }*/
     }
 }
