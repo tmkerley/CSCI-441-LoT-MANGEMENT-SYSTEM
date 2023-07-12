@@ -15,6 +15,8 @@ class CarsTableView extends TableView
      */
     protected $model = Car::class;
     public $searchBy = ['vinNo', 'make'];
+    public $sortBy = 'isBeingMoved';
+    public $sortOrder = 'desc';
 
     /**
      * Sets the headers of the table as you want to be displayed
