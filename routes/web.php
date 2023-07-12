@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SpaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/cars');
 });
 
 Auth::routes();
@@ -29,3 +30,5 @@ Route::get('/cars', function () {
 Route::get('/map/{id}/', function ($id) {
     return view('map', ['space' => \App\Models\Space::find($id)]);
 })->name('map');
+
+Route::post('spaces/updateSpace/{id}',[SpaceController::class, 'updateSpace']);
