@@ -39,6 +39,11 @@ class SpaceFactory extends Factory
                     $space -> car_vinNo = $car->vinNo;                                           //assign newly created car's ID to foreign key on space object
                     $space->save();
                 }
+                if ($space -> status == 0)     //occupied space, edit space
+                {                     //create new car 
+                    $space -> car_vinNo = NULL;                                           //assign newly created car's ID to foreign key on space object
+                    $space->save();
+                }
                 
             });
     }
