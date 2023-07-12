@@ -26,5 +26,6 @@ class SpaceController extends Controller
       $car->save();
       $newSpace->save();
       $oldSpace->save();
+      return redirect("/cars");
    }
 }
