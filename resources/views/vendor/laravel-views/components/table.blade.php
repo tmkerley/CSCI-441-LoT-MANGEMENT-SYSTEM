@@ -74,11 +74,12 @@ props:
 
           @if($item->isBeingMoved)
             @php($spaces = $item->space::where('car_vinNo', '=', NULL)->get())
-            <td class="px-3 py-2 whitespace-no-wrap">
+              <td class="px-3 py-2 whitespace-no-wrap">
               <form method="POST" action= '/spaces/updateSpace/'>
                 <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                 <input type = "hidden" name = "car" value = "{{$item->vinNo}}">
-                <select name="emptySpaces" onchange="this.form.action = '/spaces/updateSpace/' + this.value;">
+                <label for="updateSpace">Select New Parking Space</label>
+                <select id='updateSpace' name="emptySpaces" onchange="this.form.action = '/spaces/updateSpace/' + this.value;">
                   <option value=""> --- </option>
                   @foreach ($spaces as $space)
                     <option value="{{$space->id}}"> {{$space->space_no}} </option>
@@ -86,7 +87,7 @@ props:
                 </select>
                 <input type='submit' value='Submit'>
               </form>
-            </td>
+            </td>         
           @endif
         
         
@@ -99,7 +100,7 @@ props:
         @if (count($actionsByRow) > 0)
           <td>
             <div class="px-3 py-2 flex justify-end">
-              <x-lv-actions :actions="$actionsByRow" :model="$item" :isBeingMoved="$item->isBeingMoved"/>
+              <x-lv-actions :actions="$actionsByRow" :model="$item"/>
             </div>
           </td>
         @endif       
