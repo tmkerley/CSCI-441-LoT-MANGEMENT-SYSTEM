@@ -39,7 +39,7 @@ class CarsTableView extends TableView
             $model->make,
             $model->model,
             $model->year,
-            $model->space_id,
+            $model->space->space_no,
             "Yes"
         ];
         }
