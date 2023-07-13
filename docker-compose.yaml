@@ -15,3 +15,13 @@ services:
     restart: always
     ports:
       - 8080:8080
+
+  main:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: php artisan serve --host=0.0.0.0
+    volumes:
+      - .:/app
+    ports:
+      - 8000:8000
