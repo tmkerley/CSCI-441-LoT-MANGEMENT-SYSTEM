@@ -51,7 +51,7 @@ It will likely ask you this
 then, run
 
 
-`docker exec -it [containerid] php artisan migrate:fresh --seed`
+`docker exec -it [containerid] php artisan migrate:refresh --seed`
 
 to seed the data
 
