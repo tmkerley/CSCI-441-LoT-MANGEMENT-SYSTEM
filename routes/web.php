@@ -34,5 +34,6 @@ Route::get('/map/{id}/', function ($id) {
 Route::post('spaces/updateSpace/{id}',[SpaceController::class, 'updateSpace']);
 
 Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove']);
-Route::post('cars/registerPark/{id}', [CarController::class, 'registerPark']);
-Route::post('cars/registerPark/confirmPark/{id}', [CarController::class, 'confirmPark']);
+
+Route::get('cars/registerPark/{id}', [CarController::class, 'registerPark']);
+Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark']);

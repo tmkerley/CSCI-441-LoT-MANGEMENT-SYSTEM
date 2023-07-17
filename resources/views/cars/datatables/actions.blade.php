@@ -9,6 +9,10 @@ a:hover {
 tr {
     color: white;
 }
+
+th {
+    color: black;
+}
 </style>
 
 <a href='map/{{ $space_id }}' class="link-warning"> Show on Map </a>
@@ -23,7 +27,7 @@ tr {
 @endif 
 
 @if ($isBeingMoved == 1 )
-    <form method="POST" action= 'cars/registerPark/{{ $vinNo }}'>
+    <form method="GET" action= 'cars/registerPark/{{ $vinNo }}'>
                     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                     <input type='hidden' name='carId' value='{{$vinNo}}'>
                     <input type='hidden' name='spaceId' value='{{$space_id}}'>
