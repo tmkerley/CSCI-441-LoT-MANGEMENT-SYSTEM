@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class SpaceController extends Controller
 {
+   
     public function updateSpace(Request $request,$id) {
       $newSpaceId = $request->input('emptySpaces');
       $carId = $request->input('car');

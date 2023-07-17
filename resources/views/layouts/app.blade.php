@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @laravelViewsStyles(laravel-views,tailwindcss,livewire)
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
@@ -77,6 +77,6 @@
             @yield('content')
         </main>
     </div>
-    @laravelViewsScripts(laravel-views,livewire,alpine)
+    @stack('scripts')
 </body>
 </html>

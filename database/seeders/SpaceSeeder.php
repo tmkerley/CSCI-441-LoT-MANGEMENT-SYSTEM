@@ -24,7 +24,6 @@ class SpaceSeeder extends Seeder
             $rand = rand(0,10);
             if ($rand > 8)  {                                   //30 percent chance to be emmpty (status = 0)
                 \App\Models\Space::factory()->create([
-                'space_no' => $i,
                 'status' => 0,
                 //lat = inital GPS + space number * space adjustment
                 'latitude' => $initialLat,
@@ -35,7 +34,6 @@ class SpaceSeeder extends Seeder
             
             else {                                               // create occupied space
                 \App\Models\Space::factory()->create([
-                'space_no' => $i,
                 'status' => 1,
                 //lat = inital GPS + space number * space adjustment
                 'latitude' => $initialLat,

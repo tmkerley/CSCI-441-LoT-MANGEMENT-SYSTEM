@@ -13,6 +13,13 @@ class Car extends Model
     public $timestamps = false;
     protected $primaryKey = 'vinNo';
     public $incrementing = false;
+    protected $fillable = [
+        'name',
+        'email',
+        'username',
+        'phone',
+        'dob',
+    ];
     
     public function space(): BelongsTo {
         return $this->belongsTo(Space::class);

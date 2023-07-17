@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SpaceController;
+use App\Http\Controllers\CarController;
+use Yajra\DataTables\Facades\DataTables;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,20 +17,22 @@ use App\Http\Controllers\SpaceController;
 */
 
 Route::get('/', function () {
-    return redirect('/cars');
+    return redirect('cars');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/cars', function () {
-    return view('cars', ['cars' => \App\Models\Car::all(),'spaces' => \App\Models\Space::all()]);
-    });
+Route::get('cars', [CarController::class, 'index'])->name('cars.index');
 
 Route::get('/map/{id}/', function ($id) {
     return view('map', ['space' => \App\Models\Space::find($id)]);
 })->name('map');
 
 Route::post('spaces/updateSpace/{id}',[SpaceController::class, 'updateSpace']);
+
+Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove']);
+Route::post('cars/registerPark/{id}', [CarController::class, 'registerPark']);
+Route::post('cars/registerPark/confirmPark/{id}', [CarController::class, 'confirmPark']);

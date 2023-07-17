@@ -2,9 +2,6 @@
 
 namespace App\Actions;
 
-use LaravelViews\Actions\Action;
-use LaravelViews\Views\View;
-
 class MoveCarAction extends Action
 {
     /**
