@@ -1,4 +1,17 @@
-<a href='map/{{ $space_id }}'> Show on Map </a>
+<style>
+a {
+    color: white;
+}
+a:hover {
+    color: black;
+}
+
+tr {
+    color: white;
+}
+</style>
+
+<a href='map/{{ $space_id }}' class="link-warning"> Show on Map </a>
 
 @if ($isBeingMoved == 0 )
 
