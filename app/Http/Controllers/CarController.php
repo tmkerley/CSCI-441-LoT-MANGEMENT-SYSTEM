@@ -42,6 +42,7 @@ class CarController extends Controller
         $newSpace = Space::find($id);
 
         $car->space_id = $newSpaceId;             //update space assigned to car
+        $car->isBeingMoved = 0; 
         $oldSpace->car_vinNo = NULL;              //Mark old space as empty now
         $newSpace->car_vinNo = $carId;            //Assign car to new space
 
