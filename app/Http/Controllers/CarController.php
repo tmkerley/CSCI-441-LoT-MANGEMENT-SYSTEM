@@ -17,8 +17,7 @@ class CarController extends Controller
 
     public function registerMove(Request $request, $id)
     {
-        $carId = $request->input('car');
-        $car = Car::find($carId);
+        $car = Car::find($id);              //use id passed to post request to find car
         $car->isBeingMoved = 1;
 
         $car->save();
@@ -26,26 +25,25 @@ class CarController extends Controller
         return redirect('cars');
     }
 
-    public function registerPark(Request $request, $id)
+    public function registerPark(Request $request, $id)    //retrieve list of empty spaces
     {
         $carId = $request->input('carId');
         $car = Car::find($carId);
-        $spaces = Space::where('car_vinNo', '=' , NULL)->get();              //change old space to empty (NULL)          //update car to new space                 //unflag car as being moved
-                                                                    //assign space to new car
-
+        $spaces = Space::where('car_vinNo', '=' , NULL)->get();              
+                                                                   
         return view("registerPark", ['car' => $car, 'spaces' => $spaces ]);
     }
-    public function confirmPark(Request $request, $id)
+    public function confirmPark(Request $request, $id)    //submit change to db
     {
         $carId = $request->input('carId');
         $newSpaceId = $request->input('spaceId');
         $car = Car::find($carId);
-        $oldSpace = Space::find($carId); 
-        $newSpace = Space::find($newSpaceId);
+        $oldSpace = Space::find($car->space_id); 
+        $newSpace = Space::find($id);
 
-        $car->space_id = $newSpaceId;
-        $oldSpace->car_vinNo = NULL;
-        $newSpace->car_vinNo = $carId;
+        $car->space_id = $newSpaceId;             //update space assigned to car
+        $oldSpace->car_vinNo = NULL;              //Mark old space as empty now
+        $newSpace->car_vinNo = $carId;            //Assign car to new space
 
         $car->save();
         $oldSpace->save();
