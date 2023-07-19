@@ -19,12 +19,12 @@ class AdminController extends Controller
 
     public function getSpaces(adminSpacesDataTable $dataTable)
     {
-        return $dataTable->render('admin.cars');
+        return $dataTable->render('admin.spaces');
     }
 
     public function getUsers(adminUsersDataTable $dataTable)
     {
-        return $dataTable->render('admin.cars');
+        return $dataTable->render('admin.users');
     }
 
 
