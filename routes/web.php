@@ -59,6 +59,16 @@ Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
+//Role Auth
+
+Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
+    Route::get('/cars', [AdminController::class, 'getCars'])->name('admin.cars');
+    Route::get('/spaces', [AdminController::class, 'getSpaces'])->name('admin.spaces');
+    Route::get('/users', [AdminController::class, 'getUsers'])->name('admin.users');
+});
+
+      
+
 
 
 
