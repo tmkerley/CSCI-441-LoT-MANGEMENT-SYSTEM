@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\CarsDataTable;
+use Yajra\DataTables\DataTables;
 use App\Models\Space;
 use Illuminate\Http\Request;
 use App\Models\Car;
-use Yajra\DataTables\DataTables;
+
 
 class CarController extends Controller
 {

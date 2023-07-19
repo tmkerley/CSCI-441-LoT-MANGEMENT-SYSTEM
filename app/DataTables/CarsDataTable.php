@@ -35,7 +35,7 @@ class CarsDataTable extends DataTable
             ->addColumn('action', 'cars.datatables.actions')
             ->setRowClass(function ($data) {
             return $data->isBeingMoved == 0 ? 'bg-success' : 'bg-warning';
-})
+            })
             ->setRowId('id');
     }
 
