@@ -15,6 +15,70 @@ class CarController extends Controller
         return $dataTable->render('cars.index');
     }
 
+    //CRUD
+
+    public function show($id)
+    {
+    $car = Car::find($id);
+
+    if (!$car) {
+        return redirect()->route('cars.index')->with('error', 'Car not found!');
+    }
+
+    return view('cars.show', ['car' => $car]);
+    }
+
+    public function create(Request $request)
+    {
+        $data = $request->validate([
+            'vinNo' => 'required|unique:cars',
+            'space_id' => 'required|exists:spaces,id',
+            'make' => 'required|string',
+            'model' => 'required|string',
+            'year' => 'required|integer',
+            'isBeingMoved' => 'boolean',
+        ]);
+
+        $car = Car::create($data);
+
+        return redirect()->route('cars.index')->with('success', 'Car created successfully!');
+    }
+
+    public function update(Request $request, $id)
+{
+    $car = Car::find($id);
+
+    if (!$car) {
+        return redirect()->route('cars.index')->with('error', 'Car not found!');
+    }
+
+    $data = $request->validate([
+        'space_id' => 'required|exists:spaces,id',
+        'make' => 'required|string',
+        'model' => 'required|string',
+        'year' => 'required|integer',
+        'isBeingMoved' => 'boolean',
+    ]);
+
+    $car->update($data);
+
+    return redirect()->route('cars.index')->with('success', 'Car updated successfully!');
+    }
+
+    
+    public function destroy($id)
+    {
+        $car = Car::find($id);
+
+        if (!$car) {
+            return redirect()->route('cars.index')->with('error', 'Car not found!');
+        }
+
+        $car->delete();
+
+        return redirect()->route('cars.index')->with('success', 'Car deleted successfully!');
+    }
+
     public function registerMove(Request $request, $id)
     {
         $car = Car::find($id);              //use id passed to post request to find car
