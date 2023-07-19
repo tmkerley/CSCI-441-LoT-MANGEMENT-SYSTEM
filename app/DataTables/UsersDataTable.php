@@ -23,6 +23,13 @@ class UsersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', 'users.action')
+            ->editColumn('role', function ($data) {
+                if ($data->role == 1) {
+                    return "Admin";
+                }
+                if ($data->isBeingMoved == 0) {
+                    return "Tech";
+                }})
             ->setRowId('id');
     }
 
@@ -58,6 +65,7 @@ class UsersDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
+            Column::make('role'),
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('action')
