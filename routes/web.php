@@ -26,18 +26,24 @@ Auth::routes();
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('cars', [CarController::class, 'index'])->name('cars.index')->middleware('auth');
+
 
 Route::get('map/{id}/', function ($id) {
     return view('map', ['space' => \App\Models\Space::find($id)]);
 })->middleware('auth')->name('map');
 
 //Cars
-//Route::get('/cars', 'CarController@index')->name('cars.index');
-//Route::post('/cars', 'CarController@create')->name('cars.create');
-//Route::get('/cars/{id}', 'CarController@show')->name('cars.show');
-//Route::put('/cars/{id}', 'CarController@update')->name('cars.update');
-//Route::delete('/cars/{id}', 'CarController@destroy')->name('cars.destroy');
+//Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
+Route::get('cars', [CarController::class, 'index'])->name('cars.index')->middleware('auth');
+Route::post('/cars', [CarController::class, 'create'])->name('cars.create');
+Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
+Route::put('/cars/{id}', [CarController::class, 'update'])->name('cars.update');
+Route::delete('/cars/{id}', [CarController::class, 'destroy'])->name('cars.destroy');
+
+Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove'])->middleware('auth');
+
+Route::get('cars/registerPark/{id}', [CarController::class, 'registerPark'])->middleware('auth');
+Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->middleware('auth');
 
 //Spaces
 Route::get('spaces', [SpaceController::class, 'index'])->name('spaces.index');
@@ -46,10 +52,7 @@ Route::get('spaces/{id}', [SpaceController::class, 'show'])->name('spaces.show')
 Route::put('spaces/{id}', [SpaceController::class, 'update'])->name('spaces.update');
 Route::delete('spaces/{id}', [SpaceController::class, 'destroy'])->name('spaces.destroy');
 
-Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove'])->middleware('auth');
 
-Route::get('cars/registerPark/{id}', [CarController::class, 'registerPark'])->middleware('auth');
-Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->middleware('auth');
 
 //Users
 

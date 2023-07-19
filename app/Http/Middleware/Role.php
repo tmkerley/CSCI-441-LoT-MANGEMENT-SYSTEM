@@ -20,19 +20,18 @@ class Role
 
         //admin == 1
         //tech == 0
-
          if (Auth::check()) {
-            if(Auth::user()->role == '1') {
+            if(Auth::user()->role == 1) {
                 return $next($request);
             }
             else {
-                return redirect('/cars')->with('message', 'Access denied because you are not an administrator');
+                return redirect('/cars')->with('status', 'Access denied because you are not an administrator');
 
             }
          }
 
          else {
-                return redirect('/login')->with('message', 'Please login to accees the website');
+                return redirect('/login')->with('status', 'Please login to accees the website');
 
             }
 

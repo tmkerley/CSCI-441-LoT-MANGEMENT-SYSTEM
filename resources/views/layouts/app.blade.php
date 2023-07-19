@@ -31,7 +31,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -78,6 +77,11 @@
                             </li>
                         @endguest
                     </ul>
+                    @if (session('status'))
+                            <div class="alert alert-danger">
+                                {{ session('status') }}
+                            </div>
+                    @endif
                 </div>
             </div>
         </nav>
