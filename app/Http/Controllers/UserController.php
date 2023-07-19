@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index(UsersDataTable $dataTable)
     {
-        return $dataTable->render('spaces.index');
+        return $dataTable->render('users.index');
     }
 
 
