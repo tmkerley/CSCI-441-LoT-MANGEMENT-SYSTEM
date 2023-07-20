@@ -49,15 +49,17 @@
                                 </li>
                             @endif
                         @else
+                        @if (Auth::user()->role == '1')
                             <li class="nav-item">
-                                    <a class="nav-link" href="/spaces">{{ __('Spaces') }}</a>
+                                    <a class="nav-link" href="{{ route('admin.spaces') }}">{{ __('Spaces') }}</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="/users">{{ __('Users') }}</a>
+                                    <a class="nav-link" href="{{ route('admin.users') }}">{{ __('Users') }}</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="/cars">{{ __('Cars') }}</a>
+                                    <a class="nav-link" href="{{ route('admin.cars') }}">{{ __('Cars') }}</a>
                             </li>
+                        @endif    
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
