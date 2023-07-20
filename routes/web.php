@@ -18,7 +18,7 @@ use Yajra\DataTables\Facades\DataTables;
 |
 */
 
-Route::get('/', function () {return redirect('cars');})->middleware('RDfromRoot');
+Route::get('/', function () {return redirect('/home');})->middleware('RDfromRoot');
 
 Auth::routes();
 
