@@ -64,6 +64,11 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 //Role Auth
 
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
+
+    Route::get('map/{id}/', function ($id) {
+    return view('map', ['space' => \App\Models\Space::find($id)]);
+    })->middleware('auth')->name('map');
+
     Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove'])->name('cars.registerMove')->middleware('auth', 'RDfromRoot');
     Route::get('cars/registerPark/{id}', [CarController::class, 'registerPark'])->middleware('auth');
     Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->middleware('auth', 'RDfromRoot');
