@@ -31,7 +31,7 @@ class adminCarsDataTable extends DataTable
                     return "No";
                 }
             })
-            ->addColumn('action', 'cars.datatables.actions')
+            ->addColumn('action', 'admin.datatables.actions')
             ->setRowClass(function ($data) {
             return $data->isBeingMoved == 0 ? 'bg-success' : 'bg-warning';
             })
