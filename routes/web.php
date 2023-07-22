@@ -39,10 +39,10 @@ Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
 Route::put('/cars/{id}', [CarController::class, 'update'])->name('cars.update');
 Route::delete('/cars/{id}', [CarController::class, 'destroy'])->name('cars.destroy');
 
-Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove'])->middleware('auth');
+Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove'])->name('cars.registerMove')->middleware('auth');
 
 Route::get('cars/registerPark/{id}', [CarController::class, 'registerPark'])->middleware('auth');
-Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->middleware('auth');
+Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->middleware('auth', 'RDfromRoot');
 
 //Spaces
 Route::get('spaces', [SpaceController::class, 'index'])->name('spaces.index');
@@ -64,6 +64,10 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 //Role Auth
 
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
+    Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove'])->name('cars.registerMove')->middleware('auth', 'RDfromRoot');
+    Route::get('cars/registerPark/{id}', [CarController::class, 'registerPark'])->middleware('auth');
+    Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->middleware('auth', 'RDfromRoot');
+
     Route::get('/cars', [AdminController::class, 'getCars'])->name('admin.cars');
     Route::get('/spaces', [AdminController::class, 'getSpaces'])->name('admin.spaces');
     Route::get('/users', [AdminController::class, 'getUsers'])->name('admin.users');
