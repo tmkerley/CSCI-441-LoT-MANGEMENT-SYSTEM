@@ -18,7 +18,7 @@ use Yajra\DataTables\Facades\DataTables;
 |
 */
 
-Route::get('/', function () {return redirect('/home');})->middleware('RDfromRoot');
+Route::get('/', function () {return redirect('/login');})->middleware('RDfromRoot');
 
 Auth::routes();
 
@@ -42,7 +42,7 @@ Route::delete('/cars/{id}', [CarController::class, 'destroy'])->name('cars.destr
 Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove'])->name('cars.registerMove')->middleware('auth');
 
 Route::get('cars/registerPark/{id}', [CarController::class, 'registerPark'])->middleware('auth');
-Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->middleware('auth', 'RDfromRoot');
+Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->middleware('auth');
 
 //Spaces
 Route::get('spaces', [SpaceController::class, 'index'])->name('spaces.index');
@@ -63,19 +63,19 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 
 //Role Auth
 
-Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
+Route::prefix('admin')->middleware('auth', 'isAdmin', )->group(function() {
 
     Route::get('map/{id}/', function ($id) {
     return view('map', ['space' => \App\Models\Space::find($id)]);
     })->middleware('auth')->name('map');
 
-    Route::post('cars/registerMove/{id}',[CarController::class, 'registerMove'])->name('cars.registerMove')->middleware('auth', 'RDfromRoot');
-    Route::get('cars/registerPark/{id}', [CarController::class, 'registerPark'])->middleware('auth');
-    Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->middleware('auth', 'RDfromRoot');
+    Route::post('cars/registerMove/{id}',[AdminController::class, 'registerMove'])->name('cars.registerMove')->middleware('auth');
+    Route::get('cars/registerPark/{id}', [AdminController::class, 'registerPark'])->middleware('auth');
+    Route::post('cars/registerPark/{id}', [AdminController::class, 'confirmPark'])->middleware('auth', 'RDfromRoot');
 
-    Route::get('/cars', [AdminController::class, 'getCars'])->name('admin.cars');
-    Route::get('/spaces', [AdminController::class, 'getSpaces'])->name('admin.spaces');
-    Route::get('/users', [AdminController::class, 'getUsers'])->name('admin.users');
+    Route::get('/cars', [AdminController::class, 'getCars'])->name('admin.cars')->middleware('auth');
+    Route::get('/spaces', [AdminController::class, 'getSpaces'])->name('admin.spaces')->middleware('auth');
+    Route::get('/users', [AdminController::class, 'getUsers'])->name('admin.users')->middleware('auth');
 });
 
       
