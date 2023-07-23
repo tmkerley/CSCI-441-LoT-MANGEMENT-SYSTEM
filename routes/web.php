@@ -33,7 +33,7 @@ Route::get('map/{id}/', function ($id) {
 
 //Cars
 //Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
-Route::get('cars', [CarController::class, 'index'])->name('cars.index')->middleware('auth');
+Route::get('cars', [CarController::class, 'index'])->name('cars.index')->middleware('auth','isAdmin');
 Route::post('/cars', [CarController::class, 'create'])->name('cars.create');
 Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
 Route::put('/cars/{id}', [CarController::class, 'update'])->name('cars.update');
@@ -63,7 +63,7 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 
 //Role Auth
 
-Route::prefix('admin')->middleware('auth', 'isAdmin', )->group(function() {
+Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
 
     Route::get('map/{id}/', function ($id) {
     return view('map', ['space' => \App\Models\Space::find($id)]);
