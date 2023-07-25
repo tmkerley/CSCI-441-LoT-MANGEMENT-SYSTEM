@@ -67,7 +67,11 @@ class AdminController extends Controller
         return redirect("admin/cars");
     }
 
+    public function editCar(Request $request, $id)
+    {
+        
+        $car = Car::find($id);              //use id passed to post request to find car
 
-
-
+        return view('admin.edit.car',['data' => $car ] );
+    }
 }

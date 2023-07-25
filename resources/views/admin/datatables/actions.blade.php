@@ -17,6 +17,8 @@ th {
 
 <a href='map/{{ $space_id }}' class="link-warning"> Show on Map </a>
 
+<a href='edit/car/{{ $vinNo }}' class="link-warning"> Edit Car </a>
+
 @if ($isBeingMoved == 0 )
 
     <form method="POST" action= 'cars/registerMove/{{$vinNo}}'>

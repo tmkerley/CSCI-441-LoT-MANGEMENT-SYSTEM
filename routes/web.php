@@ -33,7 +33,7 @@ Route::get('map/{id}/', function ($id) {
 
 //Cars
 //Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
-Route::get('cars', [CarController::class, 'index'])->name('cars.index')->middleware('auth','isAdmin');
+Route::get('cars', [CarController::class, 'index'])->name('cars.index')->middleware('auth');
 Route::post('/cars', [CarController::class, 'create'])->name('cars.create');
 Route::get('/cars/{id}', [CarController::class, 'show'])->name('cars.show');
 Route::put('/cars/{id}', [CarController::class, 'update'])->name('cars.update');
@@ -76,6 +76,9 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
     Route::get('/cars', [AdminController::class, 'getCars'])->name('admin.cars')->middleware('auth');
     Route::get('/spaces', [AdminController::class, 'getSpaces'])->name('admin.spaces')->middleware('auth');
     Route::get('/users', [AdminController::class, 'getUsers'])->name('admin.users')->middleware('auth');
+
+    //edit
+    Route::get('/edit/car/{id}', [AdminController::class, 'editCar'])->name('admin.edit.cars')->middleware('auth');
 });
 
       
