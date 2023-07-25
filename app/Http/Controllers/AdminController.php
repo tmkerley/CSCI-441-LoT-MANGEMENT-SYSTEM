@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Space;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\DataTables\adminCarsDataTable;
 use App\DataTables\SpacesDataTable;
@@ -72,7 +73,7 @@ class AdminController extends Controller
     public function editCar(Request $request, $id)
     {
         
-        $car = Car::find($id);              //use id passed to post request to find car
+        $car = Car::find($id);              
 
         return view('admin.edit.car',['data' => $car ] );
     }
@@ -80,8 +81,16 @@ class AdminController extends Controller
     public function editSpace(Request $request, $id)
     {
         
-        $space = Space::find($id);              //use id passed to post request to find car
+        $space = Space::find($id);              
 
         return view('admin.edit.space',['data' => $space ] );
+    }
+
+    public function editUser(Request $request, $id)
+    {
+        
+        $user = User::find($id);              
+
+        return view('admin.edit.user',['data' => $user ] );
     }
 }

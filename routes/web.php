@@ -80,6 +80,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
     //edit
     Route::get('/edit/car/{id}', [AdminController::class, 'editCar'])->name('admin.edit.cars')->middleware('auth');
     Route::get('/edit/space/{id}', [AdminController::class, 'editSpace'])->name('admin.edit.space')->middleware('auth');
+    Route::get('/edit/user/{id}', [AdminController::class, 'editUser'])->name('admin.edit.user')->middleware('auth');
 });
 
       

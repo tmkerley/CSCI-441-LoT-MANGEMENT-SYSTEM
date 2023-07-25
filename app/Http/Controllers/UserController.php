@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Validator;
 use App\DataTables\UsersDataTable;
 use Illuminate\Support\Facades\Hash;
 
@@ -47,24 +48,30 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return redirect()->route('users.index')->with('error', 'User not found!');
+            return redirect()->route('admin.users')->with('error', 'Car not found!');
         }
 
-        $data = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:6',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string', // Make sure the car_id exists in the cars table
+            'email' => 'required|string',
+            'role' => 'required|numeric',
         ]);
 
-        if ($data['password']) {
-            $data['password'] = Hash::make($data['password']);
-        } else {
-            unset($data['password']);
-        }
+        if ($validator->fails()) {
+                return redirect()
+                            ->route('admin.edit.user', ['id' => $user->id])
+                            ->withErrors($validator)
+                            ->withInput();
+            }
 
-        $user->update($data);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully!');
+        
+        $user->save();
+
+        return redirect()->route('admin.users')->with('success', 'User updated successfully!');
     }
 
     public function destroy($id)

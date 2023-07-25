@@ -22,7 +22,7 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'users.action')
+            ->addColumn('action', 'admin.datatables.users.actions')
             ->editColumn('role', function ($data) {
                 if ($data->role == 1) {
                     return "Admin";
@@ -30,6 +30,7 @@ class UsersDataTable extends DataTable
                 if ($data->isBeingMoved == 0) {
                     return "Tech";
                 }})
+            ->setRowClass('bg-success')
             ->setRowId('id');
     }
 
