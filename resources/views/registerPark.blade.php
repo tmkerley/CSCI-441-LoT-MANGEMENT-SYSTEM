@@ -12,6 +12,12 @@
     </style>
 
     @foreach ($spaces as $space)
+    <form method="POST" action= '{{ $space->id}}'>
+                            <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+                            <input type='hidden' name='carId' value='{{$car->vinNo}}'>
+                            <input type='hidden' name='spaceId' value='{{$space->id}}'>
+                            <input type='submit' value='{{$space->id}}'>
+            </form>
         <div class= container id="mapcard">
             <div class="container">
                 <div id="map">
@@ -53,12 +59,6 @@
             <script type="text/javascript" src=
             "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoLVBpyaKrV9QpoOpC-5GANzwO254w_mM&callback=initMap" async defer>
             </script>
-            <form method="POST" action= '{{ $space->id}}'>
-                            <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
-                            <input type='hidden' name='carId' value='{{$car->vinNo}}'>
-                            <input type='hidden' name='spaceId' value='{{$space->id}}'>
-                            <input type='submit' value='{{$space->id}}'>
-            </form>
         </div>
     @endforeach
 </div>

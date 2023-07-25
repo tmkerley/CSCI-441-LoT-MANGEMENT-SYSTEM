@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Space;
 use App\Models\Car;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Validator;
 use App\DataTables\SpacesDataTable;
 use Illuminate\Http\Request;
 
@@ -20,12 +21,7 @@ class SpaceController extends Controller
 
    public function create(Request $request)
    {
-    $data = $request->validate([
-        'car_id' => 'nullable|exists:cars,id', // Make sure the car_id exists in the cars table
-        'status' => 'required|boolean',
-        'latitude' => 'required|numeric',
-        'longitude' => 'required|numeric',
-    ]);
+    
 
     $space = Space::create($data);
 
@@ -48,19 +44,34 @@ class SpaceController extends Controller
     $space = Space::find($id);
 
     if (!$space) {
-        return redirect()->route('spaces.index')->with('error', 'Space not found!');
+        return redirect()->route('admin.spaces')->with('error', 'Car not found!');
     }
 
-    $data = $request->validate([
-        'car_id' => 'nullable|exists:cars,id', // Make sure the car_id exists in the cars table
-        'status' => 'required|boolean',
+    $validator = Validator::make($request->all(), [
+        'car_vinNo' => 'nullable|exists:cars,id', // Make sure the car_id exists in the cars table
         'latitude' => 'required|numeric',
         'longitude' => 'required|numeric',
     ]);
 
-    $space->update($data);
+    if ($validator->fails()) {
+            return redirect()
+                        ->route('admin.edit.spaces', ['id' => $space->space_id])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
-    return redirect()->route('spaces.index')->with('success', 'Space updated successfully!');
+    $space->car_vinNo = $request->car_vinNo;
+    $space->latitude = $request->latitude;
+    $space->longitude = $request->longitude;
+
+    if ($space->car_vinNo == null) {
+        $space->status = 0;
+    }
+    
+    $space->save();
+
+    return redirect()->route('admin.spaces')->with('success', 'Space updated successfully!');
+    
    }
 
    public function destroy($id)

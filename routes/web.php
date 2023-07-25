@@ -71,7 +71,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
 
     Route::post('cars/registerMove/{id}',[AdminController::class, 'registerMove'])->name('cars.registerMove')->middleware('auth');
     Route::get('cars/registerPark/{id}', [AdminController::class, 'registerPark'])->middleware('auth');
-    Route::post('cars/registerPark/{id}', [AdminController::class, 'confirmPark'])->middleware('auth', 'RDfromRoot');
+    Route::post('cars/registerPark/{id}', [AdminController::class, 'confirmPark'])->middleware('auth');
 
     Route::get('/cars', [AdminController::class, 'getCars'])->name('admin.cars')->middleware('auth');
     Route::get('/spaces', [AdminController::class, 'getSpaces'])->name('admin.spaces')->middleware('auth');
@@ -79,6 +79,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
 
     //edit
     Route::get('/edit/car/{id}', [AdminController::class, 'editCar'])->name('admin.edit.cars')->middleware('auth');
+    Route::get('/edit/space/{id}', [AdminController::class, 'editSpace'])->name('admin.edit.space')->middleware('auth');
 });
 
       

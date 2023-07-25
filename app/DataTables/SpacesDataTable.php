@@ -22,7 +22,8 @@ class SpacesDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'spaces.action')
+            ->addColumn('action', 'admin.datatables.spaces.actions')
+            ->setRowClass('bg-success')
             ->setRowId('id');
     }
 
