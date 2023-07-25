@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\CarsDataTable;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 use App\Models\Space;
 use Illuminate\Http\Request;
@@ -53,7 +54,7 @@ class CarController extends Controller
         return redirect()->route('cars.index')->with('error', 'Car not found!');
     }
 
-    $data = $request->validate([
+    $validator = Validator::make($request->all(), [
         'space_id' => 'required|exists:spaces,id',
         'make' => 'required|string',
         'model' => 'required|string',
@@ -61,7 +62,27 @@ class CarController extends Controller
         'isBeingMoved' => 'boolean',
     ]);
 
-    $car->update($data);
+    if ($validator->fails()) {
+            return redirect()
+                        ->route('admin.edit.cars', ['id' => $car->vinNo])
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+    
+    if (Car::where('space_id', $request->space_id)->exists()) {
+        return redirect()
+                        ->route('admin.edit.cars', ['id' => $car->vinNo])
+                        ->withErrors('There is already a car in that space')
+                        ->withInput();
+        }
+
+    $car->space_id = $request->space_id;
+    $car->make = $request->make;
+    $car->model = $request->model;
+    $car->year = $request->year;
+    $car->isBeingMoved = $request->isBeingMoved;
+    
+    $car->save();
 
     return redirect()->route('cars.index')->with('success', 'Car updated successfully!');
     }
