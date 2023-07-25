@@ -17,4 +17,4 @@ th {
 
 <a href='map/{{ $id }}' class="link-warning"> Show on Map </a>
 
-<a href='edit/space/{{ $id }}' class="link-warning"> Edit Car </a>
+<a href='edit/space/{{ $id }}' class="link-warning"> Edit Space </a>
