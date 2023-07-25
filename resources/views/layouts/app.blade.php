@@ -79,11 +79,11 @@
                             </li>
                         @endguest
                     </ul>
-                    @if (session('status'))
-                            <div class="alert alert-danger">
-                                {{ session('status') }}
-                            </div>
-                    @endif
+                    <div>
+                    @foreach ($errors->all() as $message) 
+                        {{$message}} 
+                    @endforeach
+                    </div> 
                 </div>
             </div>
         </nav>
