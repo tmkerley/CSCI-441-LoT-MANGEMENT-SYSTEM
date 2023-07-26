@@ -1,5 +1,5 @@
 <style>
-a {
+#links a {
     color: white;
 }
 a:hover {
@@ -14,7 +14,7 @@ th {
     color: black;
 }
 </style>
-
-<a href='map/{{ $id }}' class="link-warning"> Show on Map </a>
-
-<a href='edit/space/{{ $id }}' class="link-warning"> Edit Space </a>
+<div id="links">
+     <a href='map/{{ $id }}' class="link-warning"> <button>Show on Map</button> </a>
+    <a href='edit/space/{{ $id }}' class="link-warning"> <button>Edit Space</button> </a>
+</div>
