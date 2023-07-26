@@ -13,11 +13,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('spaces', function (Blueprint $table) {
-            $table->id("id");                               // Primary key
-            $table->foreignIdFor(Car::class) -> nullable(); // Needs to be nullable because not all spaces will have a car
-            $table->boolean("status");                      // "on"(true) or "off" (false) 
+            $table->id("id");                                             // Primary key
+            $table->foreignIdFor(Car::class) ->default(NULL)->nullable(); // Needs to be nullable because not all spaces will have a car
+            $table->boolean("status")->default(0);                        // "on"(true) or "off" (false) 
             $table->double("latitude", 16, 13);    
-            $table->double("longitude", 16, 13);                    // ex. "A"
+            $table->double("longitude", 16, 13);                          
         });
     }
 

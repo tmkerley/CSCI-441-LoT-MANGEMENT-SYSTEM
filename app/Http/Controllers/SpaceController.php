@@ -12,20 +12,26 @@ use Illuminate\Http\Request;
 
 class SpaceController extends Controller
 {
-
-
-   public function index(SpacesDataTable $dataTable)
-    {
-        return $dataTable->render('spaces.index');
-    }
-
    public function create(Request $request)
    {
-    
 
-    $space = Space::create($data);
+    $validator = Validator::make($request->all(),[
+        'latitude' => 'required|numeric|min:-90|max:90',
+        'longitude' => 'required|numeric|min:0|max:180'
+    ]);
 
-    return redirect()->route('spaces.index')->with('success', 'Space created successfully!');
+    if ($validator->fails()) {
+            return redirect()
+                        ->route('admin.create.space')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+    $space = new Space;
+    $space->latitude = $request->latitude;
+    $space->longitude = $request->longitude;
+    $space->save();
+    return redirect()->route('admin.spaces')->with('success', 'Space created successfully!');
    }
 
    public function show($id)

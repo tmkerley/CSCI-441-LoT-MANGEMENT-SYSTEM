@@ -22,7 +22,7 @@ class AdminController extends Controller
 
     public function getSpaces(SpacesDataTable $dataTable)
     {
-        return $dataTable->render('admin.spaces');
+        return $dataTable->render('admin.spaces.spaces');
     }
 
     public function getUsers(UsersDataTable $dataTable)
@@ -92,5 +92,10 @@ class AdminController extends Controller
         $user = User::find($id);              
 
         return view('admin.edit.user',['data' => $user ] );
+    }
+
+    public function createSpace(Request $request)
+    {            
+        return view('admin.spaces.create');
     }
 }

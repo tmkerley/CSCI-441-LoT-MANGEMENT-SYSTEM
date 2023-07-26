@@ -12,6 +12,11 @@ class Space extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'latitude',
+        'longitude',
+    ];
+
     public function car(): HasOne {
         return $this->hasOne(Car::class, 'car_vinNo');
     }

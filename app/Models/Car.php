@@ -14,11 +14,10 @@ class Car extends Model
     protected $primaryKey = 'vinNo';
     public $incrementing = false;
     protected $fillable = [
-        'name',
-        'email',
-        'username',
-        'phone',
-        'dob',
+        'vinNo',
+        'make',
+        'model',
+        'year'
     ];
     
     public function space(): BelongsTo {

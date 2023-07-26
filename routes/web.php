@@ -46,7 +46,7 @@ Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->mi
 
 //Spaces
 Route::get('spaces', [SpaceController::class, 'index'])->name('spaces.index');
-Route::post('spaces', [SpaceController::class, 'create'])->name('spaces.create');
+Route::post('spaces', [SpaceController::class, 'create'])->name('spaces.create')->middleware('auth');
 Route::get('spaces/{id}', [SpaceController::class, 'show'])->name('spaces.show');
 Route::put('spaces/{id}', [SpaceController::class, 'update'])->name('spaces.update');
 Route::delete('spaces/{id}', [SpaceController::class, 'destroy'])->name('spaces.destroy');
@@ -81,6 +81,10 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function() {
     Route::get('/edit/car/{id}', [AdminController::class, 'editCar'])->name('admin.edit.cars')->middleware('auth');
     Route::get('/edit/space/{id}', [AdminController::class, 'editSpace'])->name('admin.edit.space')->middleware('auth');
     Route::get('/edit/user/{id}', [AdminController::class, 'editUser'])->name('admin.edit.user')->middleware('auth');
+
+    //create
+    Route::get('/create/car', [AdminController::class, 'createCar'])->name('admin.create.car')->middleware('auth');
+    Route::get('/create/space', [AdminController::class, 'createSpace'])->name('admin.create.space')->middleware('auth');
 });
 
       
