@@ -32,16 +32,26 @@ class CarController extends Controller
 
     public function create(Request $request)
     {
-        $data = $request->validate([
+        $validator = Validator::make($request->all(),[
             'vinNo' => 'required|unique:cars',
-            'space_id' => 'required|exists:spaces,id',
             'make' => 'required|string',
             'model' => 'required|string',
-            'year' => 'required|integer',
-            'isBeingMoved' => 'boolean',
+            'year' => 'required|integer'
         ]);
 
-        $car = Car::create($data);
+        if ($validator->fails()) {
+            return redirect()
+                        ->route('admin.create.car')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $car = Car::create([
+            'vinNo' => $request->vinNo,
+            'make' => $request->make,
+            'model' => $request->model,
+            'year' => $request->year
+        ]);
 
         return redirect()->route('cars.index')->with('success', 'Car created successfully!');
     }

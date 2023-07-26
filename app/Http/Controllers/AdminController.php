@@ -17,7 +17,7 @@ class AdminController extends Controller
     //
     public function getCars(adminCarsDataTable $dataTable)
     {
-        return $dataTable->render('admin.cars');
+        return $dataTable->render('admin.cars.cars');
     }
 
     public function getSpaces(SpacesDataTable $dataTable)
@@ -97,5 +97,10 @@ class AdminController extends Controller
     public function createSpace(Request $request)
     {            
         return view('admin.spaces.create');
+    }
+
+    public function createCar(Request $request)
+    {            
+        return view('admin.cars.create');
     }
 }
