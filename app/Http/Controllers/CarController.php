@@ -78,8 +78,9 @@ class CarController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
+    $checkSpace= Car::where('space_id', $request->space_id)->first();
     
-    if (Car::where('space_id', $request->space_id)->exists()) {
+    if (($checkSpace->exists()) && ($checkSpace->vinNo != $car->vinNo)) {
         return redirect()
                         ->route('admin.edit.cars', ['id' => $car->vinNo])
                         ->withErrors('There is already a car in that space')
@@ -94,7 +95,7 @@ class CarController extends Controller
     
     $car->save();
 
-    return redirect()->route('cars.index')->with('success', 'Car updated successfully!');
+    return redirect()->route('admin.cars')->with('success', 'Car updated successfully!');
     }
 
     

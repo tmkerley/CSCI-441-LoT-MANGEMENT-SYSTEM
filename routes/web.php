@@ -46,7 +46,7 @@ Route::post('cars/registerPark/{id}', [CarController::class, 'confirmPark'])->mi
 
 //Spaces
 Route::get('spaces', [SpaceController::class, 'index'])->name('spaces.index');
-Route::post('spaces', [SpaceController::class, 'create'])->name('spaces.create')->middleware('auth');
+Route::post('/spaces', [SpaceController::class, 'create'])->name('spaces.create')->middleware('auth');
 Route::get('spaces/{id}', [SpaceController::class, 'show'])->name('spaces.show');
 Route::put('spaces/{id}', [SpaceController::class, 'update'])->name('spaces.update');
 Route::delete('spaces/{id}', [SpaceController::class, 'destroy'])->name('spaces.destroy');
