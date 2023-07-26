@@ -1,23 +1,4 @@
 <div class="container">
-    <style>
-        /* Set the height and width of the map container */
-        #map {
-            height: 250px;
-            width: 250px;
-        }
-        #parking {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-        }
-        /* sets the size of the card */
-        #mapcard {
-            height: 300px;
-            width: 300px;
-            justify-content: center;
-            flex-direction: column;
-        }
-    </style>
     <div class=container id="parking">
         @foreach ($spaces as $space)
             <div class=container id="mapcard">
@@ -27,47 +8,7 @@
                     <input type='hidden' name='spaceId' value='{{$space->id}}'>
                     <input type='submit' value='{{$space->id}}'>
                 </form>
-            
-                <div class="container">
-                    <div id="map">
-                    </div>
                 </div>
-
-                <script type="text/javascript">
-                    // Initialize and display the map
-                    let map;
-
-                    async function initMap() {
-
-                        // Will have to enter this manually for all fake data. Will pull from space 
-                        const position = {lat: {{$space->latitude}}, lng: {{$space->longitude}}};
-
-                        //object lat/long associated with car object in the same row as the link on the cars page
-                        const { Map } = await google.maps.importLibrary("maps");                   
-                        const { Marker } = await google.maps.importLibrary("marker");
-
-
-                        map = new Map(document.getElementById("map"), {
-                            center: {lat: 40.554651780371145, lng: -111.89301195749745},
-                            zoom: 18,
-                            // Set the map type to satellite view
-                            mapTypeId: 'satellite' 
-                        });
-
-                        // The marker, positioned at center of frame
-                        const marker = new Marker({
-                            map: map,
-                            position: position,
-                            title: 'Dealership'
-                        });
-                    }
-                    
-                    initMap();
-                </script>
-
-                <script type="text/javascript" src=
-                "https://maps.googleapis.com/maps/api/js?key=AIzaSyAoLVBpyaKrV9QpoOpC-5GANzwO254w_mM&callback=initMap" async defer>
-                </script>
             </div>
         @endforeach
     </div>

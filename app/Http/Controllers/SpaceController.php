@@ -54,14 +54,14 @@ class SpaceController extends Controller
     }
 
     $validator = Validator::make($request->all(), [
-        'car_vinNo' => 'nullable|exists:cars,id', // Make sure the car_id exists in the cars table
+        'car_vinNo' => 'nullable|exists:cars,vinNo', // Make sure the car_id exists in the cars table
         'latitude' => 'required|numeric',
         'longitude' => 'required|numeric',
     ]);
 
     if ($validator->fails()) {
             return redirect()
-                        ->route('admin.edit.spaces', ['id' => $space->space_id])
+                        ->route('admin.edit.space', ['id' => $id])
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -83,14 +83,19 @@ class SpaceController extends Controller
    public function destroy($id)
    {
     $space = Space::find($id);
+    $car = Car::find($space->car_vinNo);
 
     if (!$space) {
-        return redirect()->route('spaces.index')->with('error', 'Space not found!');
+        return redirect()->route('admin.spaces')->with('error', 'Car not found!');
     }
-
+    if ($car) {
+        $car->space_id = NULL;
+        $car->save();
+    }
+    
     $space->delete();
 
-    return redirect()->route('spaces.index')->with('success', 'Space deleted successfully!');
+    return redirect()->route('admin.spaces')->with('success', 'Car deleted successfully!');
    }
 
 }

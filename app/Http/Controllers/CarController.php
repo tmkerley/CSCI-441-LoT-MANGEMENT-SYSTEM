@@ -101,14 +101,20 @@ class CarController extends Controller
     public function destroy($id)
     {
         $car = Car::find($id);
+        $space = Space::find($car->space_id);
 
         if (!$car) {
-            return redirect()->route('cars.index')->with('error', 'Car not found!');
+            return redirect()->route('admin.cars')->with('error', 'Car not found!');
         }
-
+        if ($space) {
+            $space->car_vinNo = NULL;
+            $space->status = 0;
+            $space->save();
+        }
+        
         $car->delete();
 
-        return redirect()->route('cars.index')->with('success', 'Car deleted successfully!');
+        return redirect()->route('admin.cars')->with('success', 'Car deleted successfully!');
     }
 
     public function registerMove(Request $request, $id)

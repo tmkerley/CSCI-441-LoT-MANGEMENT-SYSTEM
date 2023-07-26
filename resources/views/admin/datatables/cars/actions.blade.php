@@ -17,6 +17,13 @@ th {
 
 <a href='map/{{ $space_id }}' class="link-warning"> <button>Show on Map</button> </a>
 <a href='edit/car/{{ $vinNo }}' class="link-warning"> <button>Edit Car</button> </a>
+{{  Form::open(array('route' => array('cars.destroy', $vinNo), 'method' => 'post'))    }}
+    {{  Form::token()   }}
+    @method('delete')
+        <div>
+            <button type="submit"> Delete </button>
+        </div>
+{{  Form::close() }}
 
 @if ($isBeingMoved == 0 )
 
