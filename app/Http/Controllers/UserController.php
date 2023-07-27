@@ -15,7 +15,19 @@ class UserController extends Controller
     {
         return $dataTable->render('users.index');
     }
+    
+    public function destroy($id)
+    {
+        $user = User::find($id);
 
+        if (!$user) {
+            return redirect()->route('admin.cars')->with('error', 'Car not found!');
+        }
+        
+        $user->delete();
+
+        return redirect()->route('admin.users')->with('success', 'User deleted successfully!');
+    }
 
     public function create(Request $request)
     {
@@ -72,18 +84,5 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users')->with('success', 'User updated successfully!');
-    }
-
-    public function destroy($id)
-    {
-        $user = User::find($id);
-
-        if (!$user) {
-            return redirect()->route('users.index')->with('error', 'User not found!');
-        }
-
-        $user->delete();
-
-        return redirect()->route('users.index')->with('success', 'User deleted successfully!');
     }
 }

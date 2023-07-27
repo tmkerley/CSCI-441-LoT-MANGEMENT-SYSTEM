@@ -16,4 +16,13 @@ th {
 </style>
 
 
-<a href='edit/user/{{ $id }}' class="link-warning"> Edit User </a>
+<a href='edit/user/{{ $id }}' class="link-warning"> <button>Edit User</button> </a>
+@if (Auth::user()->email != $email)
+    {{  Form::open(array('route' => array('users.destroy', $id), 'method' => 'post'))    }}
+        {{  Form::token()   }}
+        @method('delete')
+            <div>
+                <button type="submit"> Delete </button>
+            </div>
+    {{  Form::close() }}
+@endif

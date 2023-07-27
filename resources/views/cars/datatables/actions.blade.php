@@ -15,7 +15,7 @@ th {
 }
 </style>
 
-<a href='map/{{ $space_id }}' class="link-warning"> Show on Map </a>
+<a href='map/{{ $space_id }}' class="link-warning"> <button>Show on Map</button> </a>
 
 @if ($isBeingMoved == 0 )
 
